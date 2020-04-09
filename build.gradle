@@ -1,0 +1,41 @@
+plugins {
+    id 'org.springframework.boot' version '2.2.6.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+    id 'java'
+}
+
+group = 'dev.ishikawa'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = JavaVersion.VERSION_12
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation ('org.springframework.boot:spring-boot-starter-web') {
+        exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+    }
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
+
+    implementation 'org.springframework.boot:spring-boot-starter-log4j2'
+
+    implementation('org.springframework.boot:spring-boot-starter-log4j2')
+    implementation "io.reactivex.rxjava3:rxjava:3.0.1"
+    implementation "io.projectreactor:reactor-core:3.3.4.RELEASE"
+    testImplementation "io.projectreactor:reactor-test:3.3.4.RELEASE"
+}
+
+test {
+    useJUnitPlatform()
+}
